@@ -6,36 +6,92 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Challenge - DOM</title>
   </head>
+  <style>
+    body{
+      background-color: rgb(164, 113, 212);
+    }
+
+    #app{
+      background-color: aliceblue;
+      height: 480px;
+      width: 360px;
+      border-radius: 7px;
+      position: sticky;
+      margin: auto;
+    }
+
+    #todo-title{
+      background-color: aqua;
+      font-size: medium;
+      text-align: center;
+      width: 120px;
+      height: auto;
+      margin: auto;
+      position: sticky;
+      top: 25px;
+      padding: 7px;
+    }
+
+    #todo-subtitle{
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    #input{
+      text-align: center;
+    }
+
+    #todo-input{
+      width: 200px;
+      height: 30px;
+
+    }
+
+  </style>
   <body>
     <div id="app">
       <!-- TODO: Buatlah sebuah header dengan id todo-title -->
+      <h1 id="todo-title">To-Do List</h1>
       <!-- TODO: Buatlah sebuah subtitle dengan id todo-subtitle -->
+      <h4 id="todo-subtitle">~ Today I need to ~</h4>
 
+      <div id="input">
       <!-- Section: input -->
       <!-- TODO: Buatlah sebuah input bertipe text dengan id todo-input -->
+      <input type="text" id="todo-input">
       <!-- TODO: Buatlah sebuah button dengan id todo-submit -->
+      <button onclick="fnClickHandler(input.value)" id="todo-submit">submit</button>
+    </div>
 
       <!-- Section output -->
       <!-- TODO: Buatlah sebuah <ul> dengan id todo-output -->
+        <ul id="todo-output"></ul>
     </div>
 
     <!-- ! Untuk tantangan ini, script jangan diubah ke external js yah ! -->
     <script>
       // TODO: Deklarasi variable sesuai dengan kebutuhan di sini
-      let button;
-      let input;
-      let output;
+      let button = document.getElementById("todo-submit");
+      let input = document.getElementById("todo-input");
+      let output = document.getElementById("todo-output");
 
       // TODO: Buatlah sebuah fungsi dengan nama fnClickHandler
       // Fungsi yang digunakan untuk menambahkan tulisan
       // Jangan ubah cara deklarasi fungsinya, cukup isi saja
-      function fnClickHandler(toDoItem) {}
+      function fnClickHandler(toDoItem) {
+        let li = document.createElement('li');
+        li.textContent= toDoItem; 
+        output.appendChild(li);
+        input.value="";
+      }
 
       // TODO: register event onclick / addEventListener untuk button
       // akan menjalankan fungsi fnClickHandler
+      button.addEventListener('click', fnClickHandler(toDoItem));
       
       // TODO: register event onkeypress / addEventListener untuk input
       // sehingga saat di input ditekan enter akan menjalankan fungsi fnClickHandler juga
+      input.addEventListener("keypress", fnClickHandler(input.value));
     </script>
   </body>
 </html>
